@@ -11,4 +11,4 @@ router.get('/query', async (req: Request, res: Response) => {
   res.send(response);
 });
 
-export default router;
+export { router };
