@@ -4,6 +4,7 @@ import express from 'express';
 const router = express.Router();
 
 import { ChatGPTController } from '../controllers/chatgpt-controller';
+
 const chatGptController = new ChatGPTController();
 
 router.get('/query', async (req: Request, res: Response) => {

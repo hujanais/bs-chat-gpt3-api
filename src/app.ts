@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
@@ -7,7 +7,6 @@ import path from 'path';
 const app = express();
 import { router } from './routes/chatgpt-route';
 
-console.log(process.env.PORT)
 const port = +(process.env.PORT || '3000');
 
 app.use(express.json());

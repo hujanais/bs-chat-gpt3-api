@@ -1,12 +1,14 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { ChatGPTAPI, ChatMessage } from 'chatgpt';
 
-const apiKey = process.env.OPENAI_API_KEY || '';
-
 export class ChatGPTController {
-  private _api: ChatGPTAPI;
+  private _api: ChatGPTAPI | undefined;
 
   constructor() {
-    console.log('ctor', apiKey);
+    const apiKey = process.env.PORT || 'not-found';
+    console.log('ctor', process.env.OPENAI_API_KEY);
 
     this._api = new ChatGPTAPI({
       apiKey: apiKey,
@@ -14,7 +16,10 @@ export class ChatGPTController {
   }
 
   async query(question: string): Promise<ChatMessage> {
-    const response = await this._api.sendMessage(question);
-    return response;
+    if (this._api) {
+      const response = await this._api.sendMessage(question);
+      return response;
+    }
+    throw new Error('this._api is undefined');
   }
 }
