@@ -1,6 +1,7 @@
 chat-gp3 api based on the transitive-bullshit project
 
 ### Develop using docker
+
 ### I am using my raspberry pi because my old Mac cannot run node 18.
 
 ```
@@ -19,4 +20,7 @@ docker stop [containerId] # to stop the containiner
 docker start [containerId] # to restart the container
 docker exec -it [containerId] bash # run in interactive mode
 docker exec -d [containerId] # run in detached mode
+docker logs --follow [containerId] # live tail the log file
 ```
+
+### Packaging application with docker for cloud deployment on Heroku
