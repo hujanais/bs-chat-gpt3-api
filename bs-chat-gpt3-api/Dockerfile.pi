@@ -17,5 +17,5 @@ RUN npm run build
 # EXPORT port 5000
 EXPOSE 5000
 
-# run the application.
-RUN npm run start
+# execute the application.
+CMD ["npm", "run", "start"]
