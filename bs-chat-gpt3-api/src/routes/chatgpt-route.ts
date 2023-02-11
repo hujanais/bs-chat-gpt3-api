@@ -19,13 +19,18 @@ router.post('/webhook', (req: Request, res: Response) => {
   const message = body.Body;
   console.log(`twilio-incoming: ${message}`);
 
-  if (!message && message.length < 10) {
-    res.status(200).send('under 10 characters');
-  } else {
-    chatGptController.queryAsync(message);
+  if (message) {
+    if (message.toLowerCase() === 'new') {
+      // reset
+      chatGptController.reset();
+    } else if (message.length > 10) {
+      chatGptController.queryAsync(message);
+    } else {
+      // do nothing message < 10
+    }
   }
 
-  res.status(200).send('ok');
+  res.status(200).send('ok'); // always return true to twilio.
 });
 
 // Manual endpoint to ask a question to chat-gpt.
