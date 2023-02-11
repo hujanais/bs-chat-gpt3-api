@@ -10,7 +10,7 @@ export class ChatGPTController {
 
   constructor() {
     this.twilioApi = new TwilioApi();
-    const apiKey = process.env.OPENAT_API_KEY || 'not-found';
+    const apiKey = process.env.OPENAI_API_KEY || 'not-found';
     console.log('ctor', process.env.OPENAI_API_KEY);
 
     this._api = new ChatGPTAPI({
