@@ -7,7 +7,6 @@ dotenv.config();
 const TWILIO_SID = process.env.TWILIO_SID;
 const TWILIO_AUTHTOKEN = process.env.TWILIO_AUTHTOKEN;
 const FROM_NUMBER = process.env.FROM_NUMBER || '';
-const TO_NUMBER = process.env.TO_NUMBER || '';
 
 export class TwilioApi {
   private _client: any;
@@ -16,11 +15,11 @@ export class TwilioApi {
     this._client = new Twilio(TWILIO_SID, TWILIO_AUTHTOKEN);
   }
 
-  public sendMessage = async (message: string) => {
+  public sendMessage = async (to_number: string, message: string) => {
     const msgInstance: MessageInstance = await this._client!.messages.create({
       body: message,
       from: FROM_NUMBER,
-      to: TO_NUMBER,
+      to: to_number,
     });
 
     console.log(`send-message ${msgInstance.sid}`);

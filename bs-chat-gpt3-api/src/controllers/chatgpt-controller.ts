@@ -24,7 +24,7 @@ export class ChatGPTController {
   }
 
   // queue up work and get response later.
-  async queryAsync(question: string): Promise<void> {
+  async queryAsync(to_number: string, question: string): Promise<void> {
     let opt: SendMessageOptions = {
       conversationId: this._prevMsg ? this._prevMsg.conversationId : undefined,
       parentMessageId: this._prevMsg ? this._prevMsg.parentMessageId : undefined,
@@ -33,11 +33,11 @@ export class ChatGPTController {
     this._api!.sendMessage(question, opt)
       .then((chatMsg: ChatMessage) => {
         this._prevMsg = { ...chatMsg };
-        this.twilioApi?.sendMessage(chatMsg.text);
+        this.twilioApi?.sendMessage(to_number, chatMsg.text);
       })
       .catch((err) => {
         console.log(err);
-        this.twilioApi?.sendMessage('sorry something went wrong!');
+        this.twilioApi?.sendMessage(to_number, 'sorry something went wrong!');
       });
   }
 
@@ -50,7 +50,7 @@ export class ChatGPTController {
     throw new Error('this._api is undefined');
   }
 
-  async _sendMessage(message: string): Promise<any> {
-    return this.twilioApi?.sendMessage(message);
+  async _sendMessage(to_number:string, message: string): Promise<any> {
+    return this.twilioApi?.sendMessage(to_number, message);
   }
 }

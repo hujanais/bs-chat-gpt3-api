@@ -3,6 +3,11 @@ import { Request, Response } from 'express';
 import express from 'express';
 const router = express.Router();
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+const TO_NUMBER=process.env.TO_NUMBER || '';
+
 import { ChatGPTController } from '../controllers/chatgpt-controller';
 import { ChatMessage } from 'chatgpt';
 
@@ -17,14 +22,14 @@ router.post('/webhook', (req: Request, res: Response) => {
   const { body } = req;
   const from = body.From;
   const message = body.Body;
-  console.log(`twilio-incoming: ${message}`);
+  console.log(`twilio-incoming from ${from}: ${message}`);
 
   if (message) {
     if (message.toLowerCase() === 'new') {
       // reset
       chatGptController.reset();
     } else if (message.length > 10) {
-      chatGptController.queryAsync(message);
+      chatGptController.queryAsync(from, message);
     } else {
       // do nothing message < 10
     }
@@ -49,7 +54,7 @@ router.post('/ask', async (req: Request, res: Response) => {
 // Test endpoint to send a Whatsapp message.
 router.get('/sendmessage', async (req: Request, res: Response) => {
   const msg: string = <string>req.query.message;
-  const response = await chatGptController._sendMessage(msg);
+  const response = await chatGptController._sendMessage(TO_NUMBER, msg);
   res.send(response);
 });
 
