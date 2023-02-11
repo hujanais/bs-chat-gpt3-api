@@ -24,8 +24,14 @@ router.post('/webhook', (req: Request, res: Response) => {
 // POST /api/ask
 // -- body {msg: string}
 router.post('/ask', async (req: Request, res: Response) => {
-  const response = await chatGptController.query('So glad to finally meet you!');
-  res.send(response);
+  const { body } = req;
+  if (!body.msg) {
+    res.status(500).send('msg not found');
+  } else 
+  {
+    const response = await chatGptController.query(body.msg);
+    res.send(response);
+  }
 });
 
 // Test endpoint to send a Whatsapp message.
