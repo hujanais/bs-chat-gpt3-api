@@ -1,4 +1,4 @@
-import { ChatGPTAPI, ChatMessage } from 'chatgpt';
+import { ChatGPTAPI, ChatMessage, SendMessageOptions } from 'chatgpt';
 import { TwilioApi } from '../services/twilio-api';
 import * as dotenv from 'dotenv';
 dotenv.config();
