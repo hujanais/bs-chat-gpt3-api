@@ -13,11 +13,15 @@ export class ChatGPTController {
     console.log('ctor', process.env.OPENAI_API_KEY);
 
     this._api = new ChatGPTAPI({
-       apiKey: apiKey,
-     });
+      apiKey: apiKey,
+    });
   }
 
-  async query(question: string): Promise<ChatMessage> {
+  // queue up work and get response later.
+  async queryAsync(question: string): Promise<void> {}
+
+  /** For testing use only */
+  async _query(question: string): Promise<ChatMessage> {
     if (this._api) {
       const response = await this._api.sendMessage(question);
       return response;
@@ -25,7 +29,7 @@ export class ChatGPTController {
     throw new Error('this._api is undefined');
   }
 
-  async sendMessage(message: string): Promise<any> {
+  async _sendMessage(message: string): Promise<any> {
     return this.twilioApi?.sendMessage(message);
   }
 }

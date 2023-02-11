@@ -4,6 +4,7 @@ import express from 'express';
 const router = express.Router();
 
 import { ChatGPTController } from '../controllers/chatgpt-controller';
+import { ChatMessage } from 'chatgpt';
 
 const chatGptController = new ChatGPTController();
 
@@ -17,6 +18,13 @@ router.post('/webhook', (req: Request, res: Response) => {
   const from = body.From;
   const message = body.Body;
   console.log(`twilio-incoming: ${message}`);
+
+  if (!message && message.length < 10) {
+    res.status(200).send('under 10 characters');
+  } else {
+    chatGptController.queryAsync(message);
+  }
+
   res.status(200).send('ok');
 });
 
@@ -27,9 +35,8 @@ router.post('/ask', async (req: Request, res: Response) => {
   const { body } = req;
   if (!body.msg) {
     res.status(500).send('msg not found');
-  } else 
-  {
-    const response = await chatGptController.query(body.msg);
+  } else {
+    const response = await chatGptController._query(body.msg);
     res.send(response);
   }
 });
@@ -37,7 +44,7 @@ router.post('/ask', async (req: Request, res: Response) => {
 // Test endpoint to send a Whatsapp message.
 router.get('/sendmessage', async (req: Request, res: Response) => {
   const msg: string = <string>req.query.message;
-  const response = await chatGptController.sendMessage(msg);
+  const response = await chatGptController._sendMessage(msg);
   res.send(response);
 });
 
