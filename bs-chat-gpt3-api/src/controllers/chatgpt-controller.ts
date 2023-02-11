@@ -32,6 +32,7 @@ export class ChatGPTController {
 
     this._api!.sendMessage(question, opt)
       .then((chatMsg: ChatMessage) => {
+        this._prevMsg = { ...chatMsg };
         this.twilioApi?.sendMessage(chatMsg.text);
       })
       .catch((err) => {
