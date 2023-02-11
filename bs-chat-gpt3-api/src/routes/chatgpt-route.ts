@@ -12,8 +12,12 @@ router.post('/ping', (req: Request, res: Response) => {
 });
 
 // Public endpoint for handling Twilio webhook
-router.post('/whats-app-webhook', (req: Request, res: Response) => {
+router.post('/webhook', (req: Request, res: Response) => {
   const { body } = req;
+  const from = body.From;
+  const message = body.Body;
+  console.log(`twilio-incoming: ${message}`);
+  res.status(200).send('ok');
 });
 
 // Manual endpoint to ask a question to chat-gpt.
