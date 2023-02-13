@@ -4,7 +4,7 @@ Raspberry Pi, Docker, ngrok, NodeJS(typescript), Twilio, WhatsApp
 
 ### Objective
 
-I wanted to find a way to allow my aging parents use WhatsApp too communicate with OpenAI's chat-gpt. My parents are not techically inclined at all and the only thing they really know how to use is WhatsApp on their mobile. Even an ipad was a stretch except for Facetime. So I figured why give them this chance to actually interact with the NLP AI using WhatsApp.
+I wanted to find a way to allow my aging parents use WhatsApp too communicate with OpenAI's chat-gpt. My parents are not techically inclined at all and the only thing they really know how to use is WhatsApp on their mobile. Even an ipad was a stretch except for Facetime. So I figured why not give them this chance to actually interact with the NLP AI using WhatsApp.
 
 So this 2-3 day hackathon idea was conceived and launched. So what I have done here is absolutely not production worthy, just a usable solution for my family.
 
