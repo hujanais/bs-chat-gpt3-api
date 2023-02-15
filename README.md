@@ -26,7 +26,7 @@ I have an old 2011 iMac running HighSierra OS so I was unable install Node 18 wh
 ┌────┼────────────────┼──────┐
 │    │  Raspberry Pi  │      │    ┌──────────────────┐     ┌───────────────┐
 │    │                │      │    │                  ├─────►               │
-│   ┌┴────────────────▼──┐  │    │  Twilio server   │     │   WhatsApp    │
+│   ┌┴────────────────▼──┐   │    │  Twilio server   │     │   WhatsApp    │
 │   │  NodeJS in Docker  │   │    │                  ◄─────┤               │
 │   └─────────┬──────────┘   │    └─────────▲────────┘     └───────────────┘
 │             │              │              │
@@ -47,6 +47,7 @@ I have an old 2011 iMac running HighSierra OS so I was unable install Node 18 wh
 3.  Create an [OpenAPI apikey](https://platform.openai.com/overview)
 4.  Well you need to have WhatsApp.
 5.  Install and configure ngrok on your system. [Installation guide.](https://littlebigtech.net/posts/raspberry-pi-4-minecraft-server-no-port-forwarding/) The installation guide is for minecraft but if you skip down to the ngrok section, you have all you need to do. The only difference is to use this /home/pi/.ngrok2/ngrok.yml content instead
+6.  Now you need to get the public ngrok url and enter it into the Twilio receive endpoint and don't forget the /api/webhook endpoint in the nodejs application. https://ngrok.xxx.io/api/webhook
 
 ```
 tunnels:
