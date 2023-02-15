@@ -47,7 +47,6 @@ I have an old 2011 iMac running HighSierra OS so I was unable install Node 18 wh
 3.  Create an [OpenAPI apikey](https://platform.openai.com/overview)
 4.  Well you need to have WhatsApp.
 5.  Install and configure ngrok on your system. [Installation guide.](https://littlebigtech.net/posts/raspberry-pi-4-minecraft-server-no-port-forwarding/) The installation guide is for minecraft but if you skip down to the ngrok section, you have all you need to do. The only difference is to use this /home/pi/.ngrok2/ngrok.yml content instead
-6.  Now you need to get the public ngrok url and enter it into the Twilio receive endpoint and don't forget the /api/webhook endpoint in the nodejs application. https://ngrok.xxx.io/api/webhook
 
 ```
 tunnels:
@@ -56,8 +55,9 @@ tunnels:
  addr: 5000
 ```
 
-6. Now you can go to ngrok website, and check to see that your ngrok proxy is running and you Pi is now exposed to the internet. You will then need to use this public endpoint and set that in your Twilio webhook configuration. Sorry I am not going to go through the details for that but plenty of guides out there. The Twilio webhook is how WhatsApp message can be caught in the NodeJS application.
+6. Now you can go to ngrok website, and check to see that your ngrok proxy is running and you Pi is now exposed to the internet. You will then need to use this public endpoint and set that in your Twilio webhook configuration. Sorry I am not going to go through the details for that but plenty of guides out there. The Twilio webhook is how WhatsApp message can be caught in the NodeJS application.  Don't forget the /api/webhook endpoint in the nodejs application so your Twilio webhook target will be something like,  https://ngrok.xxx.io/api/webhook
 7. Whew, now finally to actually setup the docker container and run.
+8. If you raspberry Pi is rebooted, all the Docker containers will auto restart but if you are using a free version of ngrok, that public ip will be changed and therefore you will need to repeat getting the public ngrok url and enter it into Twilio again.
 
 ```
 git clone https://github.com/hujanais/bs-chat-gpt3-api
