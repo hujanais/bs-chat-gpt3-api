@@ -75,7 +75,8 @@ docker logs --follow [container-name]
 1. I have limited that the whatsapp message to be a minimum of 10 characters so don't just say 'hello' to chat-gpt.
 2. Given WhatsApp limited screen size, be prudent with your questions.
 3. Finally Chat-GPT maintains conversational context so it remembers what you asked before. If you want to reset this context to start a whole new conversation free from previous history, just send this keyword, **new**(yes this is less than the 10 character limit but this is a special keyword) to chat-gpt and it will reset the context.
-4. One word of caution, if you activate a real Twilio account, the cost may be prohibitive so tread lightly please.
+4. There is also a session watchdog that you set in the .env file.  If a conversation is stopped more than the set timeout, the conversation context will be reset.  In other words, the 'new' command will be automatically issued if you left a conversation for a certain duration.
+5. One word of caution, if you activate a real Twilio account, the cost may be prohibitive so tread lightly please.
 
 ### Developer's notes
 
