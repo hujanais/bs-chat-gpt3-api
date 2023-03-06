@@ -1,9 +1,9 @@
-import { ChatGPTAPI, ChatMessage, SendMessageOptions } from "chatgpt";
-import { TwilioApi } from "../services/twilio-api";
-import * as dotenv from "dotenv";
+import { ChatGPTAPI, ChatMessage, SendMessageOptions } from 'chatgpt';
+import { TwilioApi } from '../services/twilio-api';
+import * as dotenv from 'dotenv';
 dotenv.config();
 
-const SESSION_LIFETIME_MS = +(process.env.SESSION_LIFETIME_MS || "30000");
+const SESSION_LIFETIME_MS = +(process.env.SESSION_LIFETIME_MS || '30000');
 
 export class ChatGPTController {
   private _api: ChatGPTAPI | undefined;
@@ -13,8 +13,8 @@ export class ChatGPTController {
 
   constructor() {
     this.twilioApi = new TwilioApi();
-    const apiKey = process.env.OPENAI_API_KEY || "not-found";
-    console.log("ctor", process.env.OPENAI_API_KEY);
+    const apiKey = process.env.OPENAI_API_KEY || 'not-found';
+    console.log('ctor', process.env.OPENAI_API_KEY);
 
     this._api = new ChatGPTAPI({
       apiKey: apiKey,
@@ -22,7 +22,7 @@ export class ChatGPTController {
   }
 
   reset(): void {
-    console.log("new conversation");
+    console.log('new conversation');
     this._prevMsg = null;
   }
 
@@ -34,14 +34,11 @@ export class ChatGPTController {
     this.timeObj = setTimeout(() => {
       this.timeObj = null;
       this._prevMsg = null;
-      console.log("watchdog - new conversation");
+      console.log('watchdog - new conversation');
     }, SESSION_LIFETIME_MS);
 
     let opt: SendMessageOptions = {
-      conversationId: this._prevMsg ? this._prevMsg.conversationId : undefined,
-      parentMessageId: this._prevMsg
-        ? this._prevMsg.parentMessageId
-        : undefined,
+      parentMessageId: this._prevMsg ? this._prevMsg.parentMessageId : undefined,
     };
 
     this._api!.sendMessage(question, opt)
@@ -52,7 +49,7 @@ export class ChatGPTController {
       })
       .catch((err) => {
         console.log(err);
-        this.twilioApi?.sendMessage(to_number, "sorry something went wrong!");
+        this.twilioApi?.sendMessage(to_number, 'sorry something went wrong!');
       });
   }
 
@@ -62,7 +59,7 @@ export class ChatGPTController {
       const response = await this._api.sendMessage(question);
       return response;
     }
-    throw new Error("this._api is undefined");
+    throw new Error('this._api is undefined');
   }
 
   async _sendMessage(to_number: string, message: string): Promise<any> {
