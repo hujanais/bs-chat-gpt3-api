@@ -55,7 +55,7 @@ tunnels:
  addr: 5000
 ```
 
-6. Now you can go to ngrok website, and check to see that your ngrok proxy is running and you Pi is now exposed to the internet. You will then need to use this public endpoint and set that in your Twilio webhook configuration. Sorry I am not going to go through the details for that but plenty of guides out there. The Twilio webhook is how WhatsApp message can be caught in the NodeJS application.  Don't forget the /api/webhook endpoint in the nodejs application so your Twilio webhook target will be something like,  https://ngrok.xxx.io/api/webhook
+6. Now you can go to ngrok website, and check to see that your ngrok proxy is running and you Pi is now exposed to the internet. You will then need to use this public endpoint and set that in your Twilio webhook configuration. Sorry I am not going to go through the details for that but plenty of guides out there. The Twilio webhook is how WhatsApp message can be caught in the NodeJS application. Don't forget the /api/webhook endpoint in the nodejs application so your Twilio webhook target will be something like, https://ngrok.xxx.io/api/webhook
 7. Whew, now finally to actually setup the docker container and run.
 8. If you raspberry Pi is rebooted, all the Docker containers will auto restart but if you are using a free version of ngrok, that public ip will be changed and therefore you will need to repeat getting the public ngrok url and enter it into Twilio again.
 
@@ -75,7 +75,7 @@ docker logs --follow [container-name]
 1. I have limited that the whatsapp message to be a minimum of 10 characters so don't just say 'hello' to chat-gpt.
 2. Given WhatsApp limited screen size, be prudent with your questions.
 3. Finally Chat-GPT maintains conversational context so it remembers what you asked before. If you want to reset this context to start a whole new conversation free from previous history, just send this keyword, **new**(yes this is less than the 10 character limit but this is a special keyword) to chat-gpt and it will reset the context.
-4. There is also a session watchdog that you set in the .env file.  If a conversation is stopped more than the set timeout, the conversation context will be reset.  In other words, the 'new' command will be automatically issued if you left a conversation for a certain duration.
+4. There is also a session watchdog that you set in the .env file. If a conversation is stopped more than the set timeout, the conversation context will be reset. In other words, the 'new' command will be automatically issued if you left a conversation for a certain duration.
 5. One word of caution, if you activate a real Twilio account, the cost may be prohibitive so tread lightly please.
 
 ### Developer's notes
