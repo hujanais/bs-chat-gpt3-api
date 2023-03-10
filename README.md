@@ -11,7 +11,7 @@ So this 2-3 day hackathon idea was conceived and launched. So what I have done h
 ### Additional backstory (optional read)
 
 I started looking for any open source API for chat-gpt and surely the amazing developers out there never disappoint. I quickly settled with a NodeJS implementation from [the folks at transitive-bullshit.](https://github.com/transitive-bullshit/chatgpt-api). They have also published an npm package for convenience which is what I eventually used.
-I have an old 2011 iMac running HighSierra OS so I was unable install Node 18 which is required for the package to work and I refused to go to my windows laptop. (lightbulb) my Raspberry Pi that runs all my home automatic docker containers. Ok sorry you had to read that.
+I have an old 2011 iMac running HighSierra OS so I was unable install Node 18 which is required for the package to work and I refused to go to my windows laptop. (lightbulb) my Raspberry Pi that runs all my home automation docker containers. Ok sorry you had to read that.
 
 ### The final system design
 
